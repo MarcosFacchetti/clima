@@ -4,15 +4,22 @@ import axios from "axios";
 function App() {
   const [data, setData] = useState({});
   const [location, setLocation] = useState("");
+  const [error, setError] = useState(null);
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&lang=es&units=metric&appid=11d63ae3d1e6aa03b32cedcc74b4735c`;
 
-  const searchLocation = (event) => {
+  const searchLocation = async (event) => {
     if (event.key === "Enter") {
-      axios.get(url).then((response) => {
+      try {
+        const response = await axios.get(url);
         setData(response.data);
+        setError(null); // Limpiar cualquier error previo
         console.log(response.data);
-      });
+      } catch (err) {
+        setData({}); // Limpiar datos en caso de error
+        setError("No se encontró la ubicación. Intente nuevamente."); // Configurar el mensaje de error
+        console.error("Error al obtener datos:", err);
+      }
       setLocation("");
     }
   };
@@ -51,6 +58,8 @@ function App() {
           </div>
         </div>
 
+        {error && <div className="error">{error}</div>}
+
         {data.name !== undefined && (
           <div className="bottom">
             <div className="feels">
@@ -75,5 +84,5 @@ function App() {
     </div>
   );
 }
-// Hola :D
+
 export default App;
