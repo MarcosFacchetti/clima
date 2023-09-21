@@ -13,11 +13,11 @@ function App() {
       try {
         const response = await axios.get(url);
         setData(response.data);
-        setError(null); // Limpiar cualquier error previo
+        setError(null); 
         console.log(response.data);
       } catch (err) {
-        setData({}); // Limpiar datos en caso de error
-        setError("No se encontró la ubicación. Intente nuevamente."); // Configurar el mensaje de error
+        setData({}); 
+        setError("No se encontró la ubicación. Intente nuevamente.");
         console.error("Error al obtener datos:", err);
       }
       setLocation("");
@@ -27,7 +27,6 @@ function App() {
   const weatherDescriptions = {
     Clear: "Despejado",
     Clouds: "Nublado",
-    // Agrega más descripciones según sea necesario
   };
 
   return (
