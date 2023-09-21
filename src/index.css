@@ -6,6 +6,7 @@
   padding: 0;
 }
 
+
 body {
   margin: 0;
   font-family: "Outfit", 'Segoe UI', 'Roboto', 'Oxygen',
@@ -29,6 +30,7 @@ h1 {
   position: absolute;
   background-color: rgb(90, 107, 111);
   color: #fff;
+  overflow-y: hidden;
 }
 
 .app::before {
@@ -93,4 +95,36 @@ h1 {
 
 .bold {
   font-weight: 700;
+}
+@media (orientation: landscape) {
+
+  .app {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .container {
+    max-width: 100vh;
+    height: 10vh;
+    margin: auto;
+    padding: 0 1rem;
+    position: fixed;
+    top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 20px;
+  }
+
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  
+
+
+
+
 }
